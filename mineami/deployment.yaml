@@ -34,4 +34,4 @@ spec:
               containerPort: 25565
           environment:
             - name: EULA
-              value: "TRUE"
+              value: TRUE
