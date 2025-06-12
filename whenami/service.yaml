@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: whenami
+  namespace: ogk
+spec:
+  type: ClusterIP
+  selector:
+    app: whenami
+  ports:
+    - name: web
+      port: 80
+      targetPort: http
