@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doomami
+  namespace: ogk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doomami
+  template:
+    metadata:
+      labels:
+        app: doomami
+    spec:
+      # securityContext:
+      #   runAsNonRoot: true
+      #   runAsUser: 999
+      #   runAsGroup: 999
+      #   fsGroup: 999
+      #   fsGroupChangePolicy: OnRootMismatch
+      #   seccompProfile:
+      #     type: RuntimeDefault
+      containers:
+        - name: doomami
+          image: callumhoughton22/doom-in-docker:0.1
+          #   allowPrivilegeEscalation: false
+          #   readOnlyRootFilesystem: true
+          #   capabilities:
+          #     drop: [ "ALL" ]
+          ports:
+            - name: http
+              containerPort: 8080
