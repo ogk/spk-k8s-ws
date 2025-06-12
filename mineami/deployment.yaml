@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mineami
+  namespace: ogk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mineami
+  template:
+    metadata:
+      labels:
+        app: mineami
+    spec:
+      # securityContext:
+      #   runAsNonRoot: true
+      #   runAsUser: 999
+      #   runAsGroup: 999
+      #   fsGroup: 999
+      #   fsGroupChangePolicy: OnRootMismatch
+      #   seccompProfile:
+      #     type: RuntimeDefault
+      containers:
+        - name: mineami
+          image: itzg/minecraft-server:latest
+          # securityContext:
+          #   allowPrivilegeEscalation: false
+          #   readOnlyRootFilesystem: true
+          #   capabilities:
+          #     drop: [ "ALL" ]
+          ports:
+            - name: http
+              containerPort: 25565
+          environment:
+            - name: EULA
+              value: "TRUE"
